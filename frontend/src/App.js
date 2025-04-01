@@ -91,7 +91,7 @@ function App() {
       }
       setLoading(true);
 
-      const fetchedData = await axios.get("http://127.0.0.1:8000/v1/getInvoiceData");
+      const fetchedData = await axios.get("https://invoiceproject-backend.onrender.com/v1/getInvoiceData");
       console.log(fetchedData.data.content);
       const formattedData = "```plaintext\n" + fetchedData.data.content + "\n```";
 
