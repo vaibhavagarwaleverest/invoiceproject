@@ -34,7 +34,7 @@ def getInvoiceData():
             for page in pdf.pages:
 
                 text+= page.extract_text()
-            print(text)
+            
             llm = ChatOpenAI(model_name="gpt-4")
 
             prompt_template = PromptTemplate(

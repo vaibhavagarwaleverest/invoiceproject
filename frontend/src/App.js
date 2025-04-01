@@ -1,81 +1,5 @@
-// import axios from "axios"
-// import { useEffect, useState } from "react";
-// import Markdown from 'react-markdown'
-
-
-// function App() {
-//   const [data,setData]=useState("")
-//   const [loading,setLoading]=useState(false)
-//   const [datafetched,setDataFetched]=useState(false)
-//   async function fetchData(){
-//     try{
-//     setLoading(true)  
-
-//     const fetchedData= await axios.get("http://127.0.0.1:8000/v1/getInvoiceData")
-//     console.log(fetchedData.data.content)
-//     const formattedData = "```plaintext\n" + fetchedData.data.content + "\n```"; 
-
-//     setData(formattedData)
-//     setDataFetched(true)
-//     setLoading(false)
-
-//     }
-//     catch(error)
-//     {
-//       console.log(error)
-//     }
-//   }
-//   function clearData()
-//   {
-//     setData("")
-//     setDataFetched(false)
-//     setLoading(false)
-//   }
-//   useEffect(()=>{
-//     console.log(data)
-//   },[data])
-
-//   return (
-//     <div className="w-full h-full flex flex-col justify-center items-center bg-black">
-//       <div className="w-full h-3/4">
-//       <div className="h-1/4 flex flex-col justify-center items-center">
-//       <h1 className="text-2xl md:text-5xl">AI-Powered Invoice Data Extraction</h1>
-//       <p className="mt-8">Smart Invoice Extraction – Powered by AI</p>
-   
-//       </div>
-//       <div className="w-full mt-8 flex justify-center items-center ">
-//         <button className="h-10 w-32 bg-slate-300 text-center border rounded-lg" onClick={(e)=>{fetchData()}}>Extract</button>
-//         <button className="h-10 w-32 bg-slate-300 text-center m-8 border rounded-lg" onClick={(e)=>{clearData()}}>Clear</button>
-
-
-//       </div>
-
-//       <div>
-
-//       </div>
-
-//       <div className="flex mt-11  justify-center items-center"><div className="w-3/4 lg:w-[25%] text-sm border rounded-xl bg-slate-300 p-6">
-//       {(datafetched==false && loading==false) ? <p className="text-center">Your Data will be show here</p>:<></>}
-//       {(datafetched==false && loading==true) ? <p className="text-center">Loading......</p>:<></>}
-//       {(datafetched==true && loading==false) ?  <Markdown>{data}</Markdown>
-//       :<></>}
-
-
-      
-//       </div></div>
-      
-//   </div>
-  
- 
-//   </div>
-
-//   );
-// }
-
-// export default App;
-
 import axios from "axios";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Markdown from "react-markdown";
 
 function App() {
@@ -92,13 +16,15 @@ function App() {
       setLoading(true);
 
       const fetchedData = await axios.get("https://invoiceproject-backend.onrender.com/v1/getInvoiceData");
-      console.log(fetchedData.data.content);
       const formattedData = "```plaintext\n" + fetchedData.data.content + "\n```";
 
       setData(formattedData);
       setDataFetched(true);
       setLoading(false);
     } catch (error) {
+      setData("Something went wrong");
+      setDataFetched(true);
+      setLoading(false);
       console.log(error);
     }
   }
@@ -109,9 +35,6 @@ function App() {
     setLoading(false);
   }
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white p-6">
