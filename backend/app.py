@@ -47,7 +47,7 @@ def getInvoiceData():
             {query}
             """
                 )
-            query = "What is the invoice date,invoice number, total amount due,due_date and write it in new line each field with value and if an y field ot found then mention NA?"
+            query = "What is the invoice date,invoice number, total amount due,due_date and write it in new line each field with value and if any field not found then mention NA?"
 
             chain = LLMChain(llm=llm, prompt=prompt_template)
             response = chain.run({"text": text, "query": query})
